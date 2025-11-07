@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styl.css">
+    <title>Document</title>
+</head>
+<body>
+   <style>
+ body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f6f6f6;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .cart-checkout-container {
+      display: flex;
+      gap: 40px;
+      max-width: 1100px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    /* 🛒 CART SECTION */
+    .cart-container {
+      flex: 1;
+      min-width: 320px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 25px;
+    }
+
+    .cart-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .cart-item img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .item-details {
+      flex: 1;
+      margin-left: 15px;
+    }
+
+    .item-details h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .item-details p {
+      margin: 5px 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .item-price {
+      font-weight: bold;
+    }
+
+    .cart-total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      background-color: #00a86b;
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background-color: #008f5b;
+    }
+
+    /* 💳 CHECKOUT SECTION */
+    .checkout-container {
+      flex: 1;
+      min-width: 320px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 25px;
+    }
+
+    .checkout-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .pay-btn {
+      background-color: #000;
+      color: #fff;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .pay-btn:hover {
+      background-color: #333;
+    }
+
+    a.back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .cart-checkout-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-checkout-container">
+    
+    <!-- 🛒 CART SECTION -->
+    <div class="cart-container">
+      <h2>Your Cart</h2>
+
+      <div class="cart-item">
+        <img src="img/jotter 1.jpg" alt="Jotter">
+        <div class="item-details">
+          <h4>Jotter</h4>
+          <p>Qty: 1</p>
+        </div>
+        <div class="item-price">₦2,500</div>
+      </div>
+
+      <div class="cart-item">
+        <img src="img/cap 1.jpg" alt="Cap">
+        <div class="item-details">
+          <h4>Cap_I</h4>
+          <p>Qty: 2</p>
+        </div>
+        <div class="item-price">₦9,600</div>
+      </div>
+
+      <div class="cart-total">Total: ₦12,100</div>
+    </div>
+
+    <!-- 💳 CHECKOUT SECTION -->
+    <div class="checkout-container">
+      <h2>Checkout</h2>
+
+      <form id="paymentForm">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" required>
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label>Shipping Address</label>
+        <input type="text" id="address" placeholder="Enter your address" required>
+
+        <label>Payment Method</label>
+        <select id="paymentMethod" required>
+          <option value="">Select payment method</option>
+          <option value="card">Debit/Credit Card</option>
+          <option value="transfer">Bank Transfer</option>
+          <option value="cod">Cash on Delivery</option>
+        </select>
+
+        <button type="submit" class="pay-btn">Complete Payment</button>
+      </form>
+
+      <a href="./index.html" class="back-link">← continue shopping</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("paymentForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Stop form from submitting normally
+
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const method = document.getElementById("paymentMethod").value;
+
+      // Validation
+      if (name === "" || email === "" || address === "" || method === "") {
+        alert("⚠️ Please fill in all fields before making payment.");
+      } else {
+        alert("✅ Payment Successful! You have successfully purchased your items.");
+        // Clear form after successful payment
+        document.getElementById("paymentForm").reset();
+      }
+    });
+  </script>
+
+
+</body>
+
+</body>
+</html>
