@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <header class="header">
+    <h1>Our T-Shirt Collection</h1>
+    <p>Trendy, comfy, and perfect for every occasion 👕</p>
+  </header>
+
+  <!-- 🛍️ Tshirt Products Section -->
+  <section class="products">
+    <div class="product-card">
+      <img src="img/tshirt1.jpg" alt="Classic White Tee" />
+      <h3>Classic White Tee</h3>
+      <p class="price">₦6,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="img/tshirt2.jpg" alt="Black Street Tee" />
+      <h3>Black Street Tee</h3>
+      <p class="price">₦7,500</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="img/tshirt3.jpg" alt="Graphic Print Tee" />
+      <h3>Graphic Print Tee</h3>
+      <p class="price">₦8,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="img/tshirt4.jpg" alt="Oversized Tee" />
+      <h3>Oversized Tee</h3>
+      <p class="price">₦9,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- 🦶 Footer -->
+  <footer class="footer">
+    <p>© 2025 DevFest Merch Store | Designed with ❤️</p>
+  </footer>
+
+  <style>
+    .header {
+  text-align: center;
+  padding: 50px 20px 30px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #666;
+}
+
+/* 🛍️ Product Section */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 40px 60px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.price {
+  font-weight: bold;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+/* 🛒 Button Style */
+.btn {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #e65c00;
+}
+
+/* 🦶 Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
+  color: white;
+  font-size: 0.9rem;
+}
+  </style>
+
+
+<script>
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      alert('✅ Item added to cart!');
+    });
+  });
+</script>
+</body>
+</html>

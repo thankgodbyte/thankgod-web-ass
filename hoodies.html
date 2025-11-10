@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <header class="header">
+    <h1>Premium Hoodie Collection</h1>
+    <p>Stay warm. Stay stylish. Your comfort, our design 🧢</p>
+  </header>
+
+  <!-- 🛍️ Hoodie Products Section -->
+  <section class="products">
+    <div class="product-card">
+      <img src="img/hoodie1.jpg" alt="Classic Black Hoodie" />
+      <h3>Classic Black Hoodie</h3>
+      <p class="price">₦15,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="img/hoodie2.jpg" alt="Grey Pullover Hoodie" />
+      <h3>Grey Pullover Hoodie</h3>
+      <p class="price">₦17,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="img/hoodie3.jpg" alt="Zip-up Hoodie" />
+      <h3>Zip-Up Hoodie</h3>
+      <p class="price">₦18,500</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="img/hoodie4.jpg" alt="Oversized Hoodie" />
+      <h3>Oversized Hoodie</h3>
+      <p class="price">₦20,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- 🦶 Footer -->
+  <footer class="footer">
+    <p>© 2025 DevFest Merch Store | Designed with ❤️</p>
+  </footer>
+
+  <style>
+    .header {
+  text-align: center;
+  padding: 50px 20px 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* 🛍️ Product Section */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  padding: 50px 60px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.price {
+  font-weight: bold;
+  color: #ff6600;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+/* 🛒 Button Style */
+.btn {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #e65c00;
+}
+
+/* 🦶 Footer */
+.footer {
+  text-align: center;
+  padding: 25px;
+  background-color: #111;
+  color: white;
+  font-size: 0.9rem;
+}
+  </style>
+
+  <!-- 🧠 Add to Cart Alert -->
+  <script>
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert('✅ Hoodie added to cart!');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -4,41 +4,563 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styl.css">
-    <title>Document</title>
+    <title>login/ userData</title>
 </head>
-<body class="body2">
-  <div class="login-container">
-    <h2>Login</h2>
+<body>
+   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .store-logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .store-logo h1 {
+      color: #667eea;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .store-logo p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    #loginForm input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    #loginForm input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    #loginForm button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    #loginForm button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .bottom-text {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+    }
+
+    .bottom-text a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .profile-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 900px;
+      overflow: hidden;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .profile-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 150px;
+      position: relative;
+    }
+
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border: 5px solid white;
+      position: absolute;
+      bottom: -60px;
+      left: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .online-status {
+      width: 25px;
+      height: 25px;
+      background: #10b981;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      border: 3px solid white;
+    }
+
+    .profile-content {
+      padding: 80px 40px 40px 40px;
+    }
+
+    .profile-name {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .profile-role {
+      font-size: 18px;
+      color: #667eea;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .member-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+      color: #333;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .profile-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: #f7f7f7;
+      border-radius: 10px;
+    }
+
+    .info-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .icon-purple { background: #ede9fe; color: #7c3aed; }
+    .icon-blue { background: #dbeafe; color: #2563eb; }
+    .icon-pink { background: #fce7f3; color: #ec4899; }
+    .icon-green { background: #d1fae5; color: #10b981; }
+
+    .shopping-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-card:nth-child(1) {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    }
+
+    .stat-card:nth-child(2) {
+      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+
+    .stat-card:nth-child(3) {
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    }
+
+    .stat-card:nth-child(4) {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 12px;
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .shop-btn {
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .shop-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .orders-btn {
+      padding: 15px;
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .orders-btn:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .logout-btn {
+      width: 100%;
+      padding: 15px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .recent-activity {
+      background: #f9fafb;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .recent-activity h3 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      background: #667eea;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .activity-details {
+      flex: 1;
+    }
+
+    .activity-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .activity-time {
+      font-size: 12px;
+      color: #999;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .profile-content {
+        padding: 80px 20px 20px 20px;
+      }
+
+      .profile-avatar {
+        left: 20px;
+      }
+
+      .shopping-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .action-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" id="loginPage">
+    <div class="store-logo">
+      <h1>🛍️ Kaycees Abuja Store</h1>
+      <p>Your favorite merch destination</p>
+    </div>
+    <h2>Welcome Back!</h2>
     <form id="loginForm">
       <input type="text" id="username" placeholder="Username or Email" required />
       <input type="password" id="password" placeholder="Password" required />
       <button type="submit">Login</button>
     </form>
     <div class="bottom-text">
-      Don’t have an account? <a href="#">Sign up</a>
+      Don't have an account? <a href="#">Sign up</a>
+    </div>
+  </div>
+
+  <div class="profile-container hidden" id="profilePage">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <span id="avatarInitial">U</span>
+        <div class="online-status"></div>
+      </div>
+    </div>
+    
+    <div class="profile-content">
+      <div class="profile-name" id="profileName">User Name</div>
+      <div class="profile-role">Valued Customer</div>
+      <div class="member-badge">⭐ Gold Member</div>
+      
+      <div class="profile-info">
+        <div class="info-item">
+          <div class="info-icon icon-pink">📧</div>
+          <span id="profileEmail">user@example.com</span>
+        </div>
+        <div class="info-item">
+          <div class="info-icon icon-blue">📍</div>
+          <span>Abuja, Nigeria</span>
+        </div>
+        <div class="info-item">
+          <div class="info-icon icon-purple">📞</div>
+          <span>+234 706 408 137</span>
+        </div>
+        <div class="info-item">
+          <div class="info-icon icon-green">📅</div>
+          <span>Member since 2023</span>
+        </div>
+      </div>
+
+      <div class="shopping-stats">
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Total Orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">In Cart</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Wishlist</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">₦45k</div>
+          <div class="stat-label">Total Spent</div>
+        </div>
+      </div>
+
+      <div class="recent-activity">
+        <h3>Recent Activity</h3>
+        <div class="activity-item">
+          <div class="activity-icon">🛒</div>
+          <div class="activity-details">
+            <div class="activity-title">Ordered Tshirt & Cap</div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">💝</div>
+          <div class="activity-details">
+            <div class="activity-title">Added Hoodie to Wishlist</div>
+            <div class="activity-time">5 days ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">✅</div>
+          <div class="activity-details">
+            <div class="activity-title">Order Delivered - Mug & Jotter</div>
+            <div class="activity-time">1 week ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="shop-btn" id="shopBtn">
+          🛍️ Start Shopping
+        </button>
+        <button class="orders-btn" id="ordersBtn">
+          📦 My Orders
+        </button>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">Logout</button>
     </div>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault(); // Prevent form from refreshing the page
+    var userData = null;
 
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      var username = document.getElementById("username").value.trim();
+      var password = document.getElementById("password").value.trim();
 
       if (username && password) {
-        alert("✅ You have successfully logged in!");
+        userData = {
+          username: username,
+          email: username.includes('@') ? username : username + '@example.com'
+        };
 
-        // Save username (optional, so we can display it later)
-        localStorage.setItem("loggedInUser", username);
+        alert("✅ Welcome back! You have successfully logged in!");
 
-        // Redirect to profile page after 1 second
-        setTimeout(() => {
-          window.location.href = "profile.html";
-        }, 1000);
+        setTimeout(function() {
+          showProfile();
+        }, 500);
       } else {
         alert("❌ Please enter valid login details!");
       }
+    });
+
+    function showProfile() {
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("profilePage").classList.remove("hidden");
+
+      if (userData) {
+        var initial = userData.username.charAt(0).toUpperCase();
+        document.getElementById("avatarInitial").textContent = initial;
+        document.getElementById("profileName").textContent = userData.username;
+        document.getElementById("profileEmail").textContent = userData.email;
+      }
+    }
+
+    function logout() {
+      if (confirm("Are you sure you want to logout?")) {
+        userData = null;
+        document.getElementById("profilePage").classList.add("hidden");
+        document.getElementById("loginPage").classList.remove("hidden");
+        document.getElementById("loginForm").reset();
+      }
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", logout);
+
+    document.getElementById("shopBtn").addEventListener("click", function() {
+      alert("🛍️ Redirecting to shop...");
+      window.location.href = "index.html";
+    });
+
+    document.getElementById("ordersBtn").addEventListener("click", function() {
+      alert("📦 Opening your orders...");
     });
   </script>
 </body>
